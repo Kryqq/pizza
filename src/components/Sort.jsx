@@ -1,4 +1,5 @@
 import react from 'react';
+const list = ['популярности', 'цене', 'алфавиту'];
 
 function Sort() {
    const [open, setOpen] = react.useState(false);
@@ -14,15 +15,7 @@ function Sort() {
             <b>Сортировка по:</b>
             <span onClick={() => setOpen(!open)}>популярности</span>
          </div>
-         <div className="sort__popup">
-            {open && (
-               <ul>
-                  <li className="active">популярности</li>
-                  <li>цене</li>
-                  <li>алфавиту</li>
-               </ul>
-            )}
-         </div>
+         <div className="sort__popup">{open && list.map((item) => <li className="active">{item}</li>)}</div>
       </div>
    );
 }
