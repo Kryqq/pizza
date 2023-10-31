@@ -1,4 +1,4 @@
-import react from 'react';
+import React from 'react';
 
 function Sort() {
    const onClickListItem = (i) => {
@@ -6,8 +6,8 @@ function Sort() {
       setOpen(false);
    };
 
-   const [open, setOpen] = react.useState(false);
-   const [selected, setSelected] = react.useState(0);
+   const [open, setOpen] = React.useState(false);
+   const [selected, setSelected] = React.useState(0);
    const list = ['популярности', 'цене', 'алфавиту'];
    const sortName = list[selected];
    return (
