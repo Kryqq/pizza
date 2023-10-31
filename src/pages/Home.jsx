@@ -19,13 +19,13 @@ const Home = () => {
             setIsloading(false);
          });
       window.scrollTo(0, 0);
-   }, [categoryId]);
+   }, [categoryId, sortType]);
 
    return (
       <div className="content">
          <div className="content__top">
-            <Categories value={categoryId} onClickCategory={(id) => setCategoryId(id)} />
-            <Sort />
+            <Categories value={categoryId} onChangeCategory={(id) => setCategoryId(id)} />
+            <Sort value={sortType} onChangeSort={(id) => setSortType(id)}  />
          </div>
          <h2 className="content__title">Все пиццы</h2>
          <div className="content__items">
