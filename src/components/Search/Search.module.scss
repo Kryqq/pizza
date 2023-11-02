@@ -14,7 +14,7 @@
 
    &:focus {
       border: 1px solid rgba(0, 0, 0, 0.2);
-	 width: 400px;
+     //  width: 400px;
    }
 }
 .icon {
@@ -24,4 +24,17 @@
    position: absolute;
    left: 12px;
    top: 12px;
+}
+.clearIcon {
+   width: 18px;
+   height: 18px;
+   opacity: 0.3;
+   position: absolute;
+   right: 15px;
+   top: 12px;
+   &:hover {
+      opacity: 0.8;
+      cursor: pointer;
+   }
+   
 }
