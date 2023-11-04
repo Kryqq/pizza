@@ -12,6 +12,7 @@ const Home = () => {
    const [categoryId, setCategoryId] = React.useState(0);
    const [currentPage, setcurrentPage] = React.useState(1);
    const [sortType, setSortType] = React.useState({ name: ' популярности', sortProperty: 'rating' });
+//
    const { searchValue } = React.useContext(SearchContext);
 
    React.useEffect(() => {
