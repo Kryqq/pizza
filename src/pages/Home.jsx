@@ -21,8 +21,8 @@ const Home = () => {
    const [items, setItems] = React.useState([]);
    const [isLoading, setIsloading] = React.useState(true);
    const { searchValue } = React.useContext(SearchContext);
-//    const isSearch = React.useRef(false);
-//    const isMounted = React.useRef(false);
+   //    const isSearch = React.useRef(false);
+   //    const isMounted = React.useRef(false);
 
    const dispatch = useDispatch();
    const navigate = useNavigate();
@@ -47,23 +47,23 @@ const Home = () => {
                sort,
             })
          );
-     //     isSearch(true);
+         //     isSearch(true);
       }
    }, []);
 
    React.useEffect(() => {
-     //  if (isMounted.current) {
-         const queryString = qs.stringify({
-            sortType: sortType,
-            categoryId,
-            currentPage,
-         });
-         navigate(`?${queryString}`);
-     //  }
-     //  isMounted.current = true;
+      //  if (isMounted.current) {
+      const queryString = qs.stringify({
+         sortType: sortType,
+         categoryId,
+         currentPage,
+      });
+      navigate(`?${queryString}`);
+      //  }
+      //  isMounted.current = true;
    }, [categoryId, sortType, currentPage]);
 
-   const fetchPizzas = () => {
+   const fetchPizzas = async () => {
       setIsloading(true);
 
       const order = sortType.includes('-') ? 'asc' : 'desc';
@@ -80,22 +80,33 @@ const Home = () => {
       //        setIsloading(false);
       //     });
 
-      axios
-         .get(
+      //  await axios
+      //     .get(
+      //        `https://653a70a02e42fd0d54d3e7e7.mockapi.io/Items?page=${currentPage}&limit=4&${category}&sortBy=${sortBy}&order=${order}${search}`
+      //     )
+      //     .then((res) => {
+      //        setItems(res.data);
+      //        setIsloading(false);
+      //     });
+
+      try {
+         const res = await axios.get(
             `https://653a70a02e42fd0d54d3e7e7.mockapi.io/Items?page=${currentPage}&limit=4&${category}&sortBy=${sortBy}&order=${order}${search}`
-         )
-         .then((res) => {
-            setItems(res.data);
-            setIsloading(false);
-         });
+         );
+         setItems(res.data);
+      } catch (error) {
+         console.log('ERROR', error);
+      } finally {
+         setIsloading(false);
+      }
    };
 
    React.useEffect(() => {
       window.scrollTo(0, 0);
-     //  if (!isSearch.current) {
-         fetchPizzas();
-     //  }
-     //  isSearch.current = false;
+      //  if (!isSearch.current) {
+      fetchPizzas();
+      //  }
+      //  isSearch.current = false;
    }, [categoryId, sortType, searchValue, currentPage]);
 
    const pizzas = items.map((obj) => <PizzaBlock key={obj.id} {...obj} />);
