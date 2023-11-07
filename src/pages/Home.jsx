@@ -10,17 +10,14 @@ import PizzaBlock from '../components/pizzaBlock/PizzaBlock';
 import Skeleton from '../components/pizzaBlock/Skeleton';
 import Pagination from '../components/Pagination/Index';
 import { list } from '../components/Sort';
-import { SearchContext } from '../App';
-
-
 
 const Home = () => {
    const categoryId = useSelector((state) => state.filter.categoryId);
    const sortType = useSelector((state) => state.filter.sort.sortProperty);
    const currentPage = useSelector((state) => state.filter.currentPage);
+   const searchValue = useSelector((state) => state.filter.searchValue);
    const { items, status } = useSelector(selectPizzaData);
 
-   const { searchValue } = React.useContext(SearchContext);
    //    const isSearch = React.useRef(false);
    //    const isMounted = React.useRef(false);
 
