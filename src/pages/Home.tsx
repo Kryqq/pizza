@@ -11,11 +11,11 @@ import Skeleton from '../components/pizzaBlock/Skeleton';
 import Pagination from '../components/Pagination/Index';
 import { list } from '../components/Sort';
 
-const Home = () => {
-   const categoryId = useSelector((state) => state.filter.categoryId);
-   const sortType = useSelector((state) => state.filter.sort.sortProperty);
-   const currentPage = useSelector((state) => state.filter.currentPage);
-   const searchValue = useSelector((state) => state.filter.searchValue);
+const Home: React.FC = () => {
+   const categoryId = useSelector((state: any) => state.filter.categoryId);
+   const sortType = useSelector((state: any) => state.filter.sort.sortProperty);
+   const currentPage = useSelector((state: any) => state.filter.currentPage);
+   const searchValue = useSelector((state: any) => state.filter.searchValue);
    const { items, status } = useSelector(selectPizzaData);
 
    //    const isSearch = React.useRef(false);
@@ -24,11 +24,11 @@ const Home = () => {
    const dispatch = useDispatch();
    const navigate = useNavigate();
 
-   const onChangeCategory = (id) => {
+   const onChangeCategory = (id: number) => {
       dispatch(setCategoryId(id));
    };
 
-   const onChangePage = (number) => {
+   const onChangePage = (number: number) => {
       dispatch(setCurrentPage(number));
    };
 
@@ -85,6 +85,7 @@ const Home = () => {
       //     });
 
       dispatch(
+         //@ts-ignore
          fetchPizzas({
             order,
             sortBy,
@@ -103,7 +104,7 @@ const Home = () => {
       //  isSearch.current = false;
    }, [categoryId, sortType, searchValue, currentPage]);
 
-   const pizzas = items.map((obj) => <PizzaBlock key={obj.id} {...obj} />);
+   const pizzas = items.map((obj: any) => <PizzaBlock key={obj.id} {...obj} />);
    const skeletons = [...new Array(6)].map((_, index) => <Skeleton key={index} />);
 
    return (
@@ -116,7 +117,7 @@ const Home = () => {
          {status === 'error' ? (
             <div className="contnent__error-info">
                <h2>
-                  Проишла ошибка <icon>😕</icon>
+                  Проишла ошибка <span>😕</span>
                </h2>
                <p>К сожалению не получилось получить пиццы... попробуйте позже.</p>
             </div>
