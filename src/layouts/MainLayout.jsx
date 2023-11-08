@@ -1,10 +1,11 @@
 import React from 'react';
 import Header from '../components/Header';
-const MainLayout = ({ children }) => {
+import { Outlet } from 'react-router-dom';
+const MainLayout = () => {
    return (
       <div className="wrapper">
          <Header />
-         <div className="container">{children}</div>
+         <div className="container">{<Outlet />}</div>
       </div>
    );
 };
