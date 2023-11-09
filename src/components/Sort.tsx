@@ -27,8 +27,11 @@ function Sort() {
    };
 
    const [open, setOpen] = React.useState(false);
-   const handleClickOutside = (event: any) => {
-      if (!event.composedPath().includes(sortRef.current)) {
+   const handleClickOutside = (event: MouseEvent) => {
+      const current = sortRef.current;
+      const path = event.composedPath();
+
+      if (current && !path.includes(current)) {
          setOpen(false);
       }
    };

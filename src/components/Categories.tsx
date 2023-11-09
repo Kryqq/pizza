@@ -2,21 +2,24 @@ import React from 'react';
 
 type CategoriesProps = {
    value: number;
-   onChangeCategory: any;
+   onChangeCategory: (i: number) => void;
+ 
 };
+const categories = ['Все', 'Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые'];
 
 const Categories: React.FC<CategoriesProps> = ({ value, onChangeCategory }) => {
-   const categories = ['Все', 'Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые'];
+
+
    return (
       <div className="categories">
          <ul>
-            {categories.map((item, index) => (
+            {categories.map((item, i) => (
                <li
-                  key={index}
+                  key={i}
                   onClick={() => {
-                     onChangeCategory(index);
+                     onChangeCategory(i);
                   }}
-                  className={value === index ? 'active' : ''}
+                  className={value === i ? 'active' : ''}
                >
                   {item}
                </li>
