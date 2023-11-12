@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import qs from 'qs';
 import { useNavigate } from 'react-router-dom';
-import { FilterSliceState, setCategoryId, setCurrentPage, setFilters } from '../redux/slices/filterSlice';
+import { setCategoryId, setCurrentPage, setFilters } from '../redux/slices/filterSlice';
 import { fetchPizzas, selectPizzaData } from '../redux/slices/pizzaSlice';
 import Categories from '../components/Categories';
 import Sort from '../components/Sort';
@@ -27,9 +27,9 @@ const Home: React.FC = () => {
    const dispatch = useAppDispatch();
    const navigate = useNavigate();
 
-   const onChangeCategory = (id: number) => {
+   const onChangeCategory = React.useCallback((id: number) => {
       dispatch(setCategoryId(id));
-   };
+   }, []);
 
    const onChangePage = (number: number) => {
       dispatch(setCurrentPage(number));
