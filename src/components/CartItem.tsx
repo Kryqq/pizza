@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { addItem, minusItem, removeItem } from '../redux/slices/cartSlice';
+import { CartItem, addItem, minusItem, removeItem } from '../redux/slices/cartSlice';
 
 type CartItemProps = {
    id: string;
@@ -8,14 +8,14 @@ type CartItemProps = {
    count: number;
    size: number;
    price: number;
-   imageUrl: string;
+   imageurl: string;
    type: string;
 };
 
-const CartItem: React.FC<CartItemProps> = ({ id, title, count, size, price, imageUrl, type }) => {
+const CartItemBlock: React.FC<CartItemProps> = ({ id, title, count, size, price, imageurl, type }) => {
    const dispatch = useDispatch();
    const onClickPlus = () => {
-      dispatch(addItem({ id }));
+      dispatch(addItem({ id } as CartItem));
    };
    const onClickMinus = () => {
       dispatch(minusItem(id));
@@ -28,7 +28,7 @@ const CartItem: React.FC<CartItemProps> = ({ id, title, count, size, price, imag
    return (
       <div className="cart__item">
          <div className="cart__item-img">
-            <img className="pizza-block__image" src={imageUrl} alt="Pizza" />
+            <img className="pizza-block__image" src={imageurl} alt="Pizza" />
          </div>
          <div className="cart__item-info">
             <h3>{title}</h3>
@@ -84,4 +84,4 @@ const CartItem: React.FC<CartItemProps> = ({ id, title, count, size, price, imag
    );
 };
 
-export default CartItem;
+export default CartItemBlock;
